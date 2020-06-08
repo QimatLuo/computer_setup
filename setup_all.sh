@@ -1,7 +1,6 @@
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   source "$(dirname $0)/ubuntu/setup.sh"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  source "$(dirname $0)/brew/setup.sh"
   source "$(dirname $0)/mac/setup.sh"
 else
   echo "$OSTYPE"

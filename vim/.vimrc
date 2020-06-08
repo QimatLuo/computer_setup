@@ -1,7 +1,7 @@
 nnoremap <C-L> :nohlsearch\|redraw!<CR><C-L>
 nnoremap <SPACE><SPACE>y :%y+<CR>
 nnoremap <SPACE>sp :set paste!<CR>
-nnoremap <SPACE>tn :tabnew
+nnoremap <SPACE>tn :tabnew 
 set background=dark
 set hlsearch
 set ignorecase
