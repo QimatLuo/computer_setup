@@ -1,0 +1,24 @@
+repo=`basename $(git rev-parse --show-toplevel)`
+echo $repo
+
+target_branch="development"
+if [[ ! -z "$1" ]]; then
+  target_branch="$1"
+fi
+
+reviewers="Qimat.Luo@westpharma.com"
+if [[ "$repo" == "exosense-ui" ]]; then
+  reviewers="Akira.Cai@westpharma.com Alan.Liu@westpharma.com Calvin.Zheng@westpharma.com Ray.Wang@westpharma.com"
+fi
+
+work_item_id=$(git branch --show-current)
+work_item_title=$(az boards work-item show --id "${work_item_id}" --expand none --query 'fields."System.Title"' --output tsv)
+title="${work_item_title} #${work_item_id}"
+
+az repos pr create \
+  --auto-complete true \
+  --delete-source-branch true \
+  --target-branch "${target_branch}" \
+  --title "${title}" \
+  --reviewers "${reviewers}" \
+  --work-items "${work_item_id}"
